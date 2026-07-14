@@ -4,11 +4,13 @@ const PI_API_BASE = "https://api.testnet.minepi.com/v2";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { paymentId: string } }
+  { params }: { params: Promise<{ paymentId: string }> }
 ) {
+  const { paymentId } = await params;
+
   try {
     const body = await req.json();
-    const res = await fetch(`${PI_API_BASE}/payments/${params.paymentId}/complete`, {
+    const res = await fetch(`${PI_API_BASE}/payments/${paymentId}/complete`, {
       method: "POST",
       headers: {
         Authorization: `Key ${process.env.PI_API_KEY}`,
