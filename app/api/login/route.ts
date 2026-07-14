@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const PI_PLATFORM_URL = "https://api.testnet.minepi.com/v2/me";
+const PI_PLATFORM_URL = "https://api.minepi.com/v2/me";
 const APP_ID = process.env.NEXT_PUBLIC_PI_APP_ID || "ramars";
 
 export async function POST(req: NextRequest) {
