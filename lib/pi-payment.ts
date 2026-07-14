@@ -236,18 +236,25 @@ const createPaymentCallbacks = (
 // ============================================================================
 
 export const pay = async (options: PaymentOptions): Promise<void> => {
+  console.log("PAY_DEBUG: pay() called", options);
+
   const paymentData: PiPaymentData = {
     amount: options.amount,
     memo: options.memo || `Payment of ${options.amount} Pi`,
     metadata: options.metadata,
   };
 
+  console.log("PAY_DEBUG: paymentData", paymentData);
+  console.log("PAY_DEBUG: window.Pi type", typeof window.Pi);
+
   const callbacks = createPaymentCallbacks(options);
 
   try {
+    console.log("PAY_DEBUG: calling createPayment");
     window.Pi.createPayment(paymentData, callbacks);
+    console.log("PAY_DEBUG: createPayment returned");
   } catch (error) {
-    console.error("Failed to create payment:", error);
+    console.error("PAY_DEBUG: Failed to create payment:", error);
     if (options.onError) {
       options.onError(
         error instanceof Error ? error : new Error("Failed to create payment")
