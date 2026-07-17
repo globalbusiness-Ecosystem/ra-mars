@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const PI_API_BASE = "https://api.testnet.minepi.com/v2";
+const PI_API_BASE = "https://api.minepi.com/v2";
 
 export async function GET(
   req: NextRequest,
